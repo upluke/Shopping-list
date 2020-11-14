@@ -4,7 +4,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import TodoList from "./TodoList";
-import TodoFrom from "./TodoFrom";
+import TodoForm from "./TodoForm";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -39,7 +40,7 @@ export default function TodoApp() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <TodoFrom />
+      <TodoForm />
       <TodoList todos={todos} />
     </div>
   );
