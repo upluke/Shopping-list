@@ -1,4 +1,5 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -9,6 +10,12 @@ import EditIcon from "@material-ui/icons/Edit";
 import useToggleState from "./hooks/useToggleState";
 import EditTodoForm from "./EditTodoForm";
 
+const useStyle = makeStyles((theme) => ({
+  listItem: {
+    height: "64px",
+  },
+}));
+
 export default function Todo({
   id,
   task,
@@ -18,9 +25,9 @@ export default function Todo({
   editTodo,
 }) {
   const [isEditing, toggle] = useToggleState(false);
-
+  const classes = useStyle();
   return (
-    <ListItem>
+    <ListItem className={classes.listItem}>
       {isEditing ? (
         <EditTodoForm id={id} task={task} editTodo={editTodo} toggle={toggle} />
       ) : (
