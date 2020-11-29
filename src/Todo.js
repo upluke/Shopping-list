@@ -26,6 +26,7 @@ export default function Todo({
 }) {
   const [isEditing, toggle] = useToggleState(false);
   const classes = useStyle();
+  console.log("id:", id, "task:", task);
   return (
     <ListItem className={classes.listItem}>
       {isEditing ? (

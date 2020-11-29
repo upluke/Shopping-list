@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -29,18 +29,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TodoApp() {
-  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
+  // const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
   // const initialTodos = [
   //   { id: 1, task: "Go fishing", completed: false },
   //   { id: 2, task: "Drop a plan", completed: true },
   //   { id: 3, task: "Quit the road", completed: false },
   // ];
+  const initialTodos = [{ id: 1, task: "play games", completed: false }];
   const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
     initialTodos
   );
-  useEffect(() => {
-    window.localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  // useEffect(() => {
+  //   window.localStorage.setItem("todos", JSON.stringify(todos));
+  // }, [todos]);
 
   console.log(todos);
   const classes = useStyles();
