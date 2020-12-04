@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import useTodoState from "./hooks/useTodoState";
+import { TodosProvider } from "./context/todos.context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,13 +57,15 @@ export default function TodoApp() {
       </AppBar>
       <Grid container justify="center" className={classes.grid}>
         <Grid item={true} xs={11} md={9} lg={4}>
-          <TodoForm addTodo={addTodo} />
-          <TodoList
-            todos={todos}
-            removeTodo={removeTodo}
-            toggleTodo={toggleTodo}
-            editTodo={editTodo}
-          />
+          <TodosProvider>
+            <TodoForm addTodo={addTodo} />
+            <TodoList
+              todos={todos}
+              removeTodo={removeTodo}
+              toggleTodo={toggleTodo}
+              editTodo={editTodo}
+            />
+          </TodosProvider>
         </Grid>
       </Grid>
     </div>
