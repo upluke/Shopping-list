@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
-import useTodoState from "./hooks/useTodoState";
+// import useTodoState from "./hooks/useTodoState";
 import { TodosProvider } from "./context/todos.context";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,21 +30,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TodoApp() {
+  // #1-1 update
   // const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
   // const initialTodos = [
   //   { id: 1, task: "Go fishing", completed: false },
   //   { id: 2, task: "Drop a plan", completed: true },
   //   { id: 3, task: "Quit the road", completed: false },
   // ];
-  const initialTodos = [{ id: 1, task: "play games", completed: false }];
-  const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
-    initialTodos
-  );
+
+  // #2 update with useTodoState
+  // const initialTodos = [{ id: 1, task: "play games", completed: false }];
+  // const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
+  //   initialTodos
+  // );
+
+  // #1-2 update
   // useEffect(() => {
   //   window.localStorage.setItem("todos", JSON.stringify(todos));
   // }, [todos]);
 
-  console.log(todos);
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -58,13 +62,8 @@ export default function TodoApp() {
       <Grid container justify="center" className={classes.grid}>
         <Grid item={true} xs={11} md={9} lg={4}>
           <TodosProvider>
-            <TodoForm addTodo={addTodo} />
-            <TodoList
-              todos={todos}
-              removeTodo={removeTodo}
-              toggleTodo={toggleTodo}
-              editTodo={editTodo}
-            />
+            <TodoForm />
+            <TodoList />
           </TodosProvider>
         </Grid>
       </Grid>

@@ -12,7 +12,7 @@ const defaultTodos = [
 
 export const TodosContext = createContext();
 
-function TodosProvider(props) {
+export function TodosProvider(props) {
   const todosStuff = useTodoState(defaultTodos);
   return (
     <TodosContext.Provider value={todosStuff}>

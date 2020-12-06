@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import useInputState from "./hooks/useInputState";
+import { TodosContext } from "./context/todos.context";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -10,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditTodoForm({ id, task, editTodo, toggle }) {
+export default function EditTodoForm({ id, task, toggle }) {
   const [value, handleChange, reset] = useInputState(task);
+  const { editTodo } = useContext(TodosContext);
   const classes = useStyles();
 
   return (
