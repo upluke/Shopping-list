@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -9,6 +9,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import useToggleState from "./hooks/useToggleState";
 import EditTodoForm from "./EditTodoForm";
+import { TodosContext } from "./context/todos.context";
 
 const useStyle = makeStyles((theme) => ({
   listItem: {
@@ -16,27 +17,21 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function Todo({
-  id,
-  task,
-  completed,
-  removeTodo,
-  toggleTodo,
-  editTodo,
-}) {
+export default function Todo({ id, task, completed }) {
   const [isEditing, toggle] = useToggleState(false);
+  const { dispatch } = useContext(TodosContext);
   const classes = useStyle();
   console.log("id:", id, "task:", task);
   return (
     <ListItem className={classes.listItem}>
       {isEditing ? (
-        <EditTodoForm id={id} task={task} editTodo={editTodo} toggle={toggle} />
+        <EditTodoForm id={id} task={task} toggle={toggle} />
       ) : (
         <>
           <Checkbox
             tabIndex={-1}
             checked={completed}
-            onClick={() => toggleTodo(id)}
+            onClick={() => dispatch({ type: "TOGGLE", id: id })}
           />
           <ListItemText
             style={{ textDecoration: completed ? "line-through" : "none" }}
@@ -44,7 +39,10 @@ export default function Todo({
             {task}
           </ListItemText>
           <ListItemSecondaryAction>
-            <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
+            <IconButton
+              aria-label="Delete"
+              onClick={() => dispatch({ type: "REMOVE", id: id })}
+            >
               <DeleteForeverIcon />
             </IconButton>
             <IconButton aria-label="Edit" onClick={() => toggle()}>
