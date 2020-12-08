@@ -1,6 +1,6 @@
 import useLocalStorageState from "./useLocalStorageState";
 import { v4 as uuidv4 } from "uuid";
-
+// #2 update
 export default function useTodoState(initialTodos) {
   const [todos, setTodos] = useLocalStorageState("todos", initialTodos);
   return {

@@ -13,14 +13,14 @@ const useStyles = makeStyles((theme) => ({
 
 function TodoForm() {
   const [value, handleChange, reset] = useInputState("");
-  const { addTodo } = useContext(TodosContext);
+  const { dispatch } = useContext(TodosContext);
   const classes = useStyles();
   return (
     <Paper className={classes.paper}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addTodo(value);
+          dispatch({ type: "ADD", task: value });
           reset();
         }}
       >
