@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import useInputState from "./hooks/useInputState";
-import { TodosContext } from "./context/todos.context";
+import { DispatchContext } from "./context/todos.context";
 const useStyles = makeStyles((theme) => ({
   paper: {
     margin: "1rem 0",
@@ -13,8 +13,9 @@ const useStyles = makeStyles((theme) => ({
 
 function TodoForm() {
   const [value, handleChange, reset] = useInputState("");
-  const { dispatch } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
   const classes = useStyles();
+  console.log("inside the todoform update!");
   return (
     <Paper className={classes.paper}>
       <form
