@@ -15,7 +15,7 @@ export default function EditTodoForm({ id, task, toggle }) {
   const [value, handleChange, reset] = useInputState(task);
   const dispatch = useContext(DispatchContext);
   const classes = useStyles();
-  console.log("inside the edit update!");
+
   return (
     <form
       className={classes.form}

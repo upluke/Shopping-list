@@ -15,7 +15,7 @@ function TodoForm() {
   const [value, handleChange, reset] = useInputState("");
   const dispatch = useContext(DispatchContext);
   const classes = useStyles();
-  console.log("inside the todoform update!");
+
   return (
     <Paper className={classes.paper}>
       <form
