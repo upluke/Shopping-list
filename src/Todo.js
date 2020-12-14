@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -9,7 +9,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EditIcon from "@material-ui/icons/Edit";
 import useToggleState from "./hooks/useToggleState";
 import EditTodoForm from "./EditTodoForm";
-import { TodosContext } from "./context/todos.context";
+import { DispatchContext } from "./context/todos.context";
 
 const useStyle = makeStyles((theme) => ({
   listItem: {
@@ -17,9 +17,9 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function Todo({ id, task, completed }) {
+function Todo({ id, task, completed }) {
   const [isEditing, toggle] = useToggleState(false);
-  const { dispatch } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
   const classes = useStyle();
   console.log("id:", id, "task:", task);
   return (
@@ -54,3 +54,5 @@ export default function Todo({ id, task, completed }) {
     </ListItem>
   );
 }
+
+export default memo(Todo);
