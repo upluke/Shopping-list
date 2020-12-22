@@ -55,7 +55,7 @@ export default function TodoApp() {
       <AppBar className={classes.appBar} color="secondary" position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Market-list
+            Market-list (Bonu Vers)
           </Typography>
         </Toolbar>
       </AppBar>
